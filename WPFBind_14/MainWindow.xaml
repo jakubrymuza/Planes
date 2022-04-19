@@ -1,0 +1,107 @@
+﻿<Window x:Class="WPFBind_14.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFBind_14"
+        mc:Ignorable="d"
+        Title="Planes" Height="350" Width="600" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key ="planeListStyle" TargetType ="{x:Type ListView}">
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="Planes List">
+            <ListView Name="PlanesList" ItemsSource="{Binding}" Style="{StaticResource planeListStyle}" SelectionChanged="newPlaneSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Brand}" HorizontalAlignment="Center"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </GroupBox>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <GroupBox Header="Model Name">
+                    <TextBlock Name="model"/>
+                </GroupBox>
+                <GroupBox Header="Registration Number" Grid.Column="1">
+                    <TextBlock Name="registration"/>
+                </GroupBox>
+                <GroupBox Header="Capacity [PPL]" Grid.Row="1">
+                    <TextBlock Name="capacity"/>
+                </GroupBox>
+                <GroupBox Header="Weight [KGs]" Grid.Column="1" Grid.Row="1">
+                    <TextBlock Name="weight"/>
+                </GroupBox>
+            </Grid>
+            <GroupBox Grid.Row="1" Header="Fligts List">
+                <ListView Name="flights" Style="{StaticResource planeListStyle}" ItemsSource="{Binding}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Number}"  HorizontalAlignment="Center"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </GroupBox>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <GroupBox Header="Origin Airport">
+                        <TextBlock/>
+                    </GroupBox>
+                    <GroupBox Header="Destination Airport" Grid.Row="1">
+                        <TextBlock/>
+                    </GroupBox>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <GroupBox Header="Departure Time">
+                        <TextBlock/>
+                    </GroupBox>
+                    <GroupBox Header="Duration" Grid.Row="1">
+                        <TextBlock/>
+                    </GroupBox>
+                    <GroupBox Header="Arrival Time" Grid.Row="2">
+                        <TextBlock/>
+                    </GroupBox>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
